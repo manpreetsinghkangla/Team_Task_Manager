@@ -87,7 +87,10 @@ npm run dev:frontend   # http://localhost:5173
 6. Add environment variables in Render:
    - `MONGODB_URI` — your MongoDB Atlas or other connection string
    - `JWT_SECRET` — a strong random secret
-   - `CLIENT_URL` — your Vercel frontend URL (for production CORS)
+   - `CLIENT_URL` — your Vercel frontend URL(s) to allow via CORS.
+     - For example: `https://team-task-manager-mu-ten.vercel.app`
+     - Or multiple URLs separated by commas:
+       `https://team-task-manager-mu-ten.vercel.app,https://team-task-manager-693esb18y-manpreetsinghkanglas-projects.vercel.app`
    - `PORT` — leave blank, Render will provide it
 
 ### Frontend (Vercel)
