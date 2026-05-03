@@ -15,10 +15,18 @@ const allowedOrigins = (process.env.CLIENT_URL || 'http://localhost:5173')
   .map(url => url.trim())
   .filter(Boolean);
 
+const isAllowedOrigin = origin => {
+  if (!origin) return true;
+  if (allowedOrigins.includes('*')) return true;
+  if (allowedOrigins.includes(origin)) return true;
+  if (allowedOrigins.some(url => url.startsWith('*.') && origin.endsWith(url.slice(1)))) return true;
+  if (allowedOrigins.some(url => url.includes('vercel.app')) && origin.endsWith('.vercel.app')) return true;
+  return false;
+};
+
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.includes(origin)) return callback(null, true);
+    if (isAllowedOrigin(origin)) return callback(null, true);
     return callback(new Error('CORS policy does not allow access from this origin'));
   },
   credentials: true

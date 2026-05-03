@@ -91,6 +91,7 @@ npm run dev:frontend   # http://localhost:5173
      - For example: `https://team-task-manager-mu-ten.vercel.app`
      - Or multiple URLs separated by commas:
        `https://team-task-manager-mu-ten.vercel.app,https://team-task-manager-693esb18y-manpreetsinghkanglas-projects.vercel.app`
+     - If you use Vercel preview URLs, the backend will now also accept any origin ending in `.vercel.app`.
    - `PORT` — leave blank, Render will provide it
 
 ### Frontend (Vercel)
