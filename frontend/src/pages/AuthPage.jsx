@@ -25,7 +25,12 @@ export default function AuthPage({ mode }) {
       }
       navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.message || err.response?.data?.errors?.[0]?.msg || 'Something went wrong');
+      setError(
+        err.response?.data?.message ||
+        err.response?.data?.errors?.[0]?.msg ||
+        err.message ||
+        'Something went wrong'
+      );
     } finally {
       setLoading(false);
     }
