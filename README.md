@@ -73,28 +73,36 @@ npm run dev:frontend   # http://localhost:5173
 
 ---
 
-## 🚂 Deploy on Railway
+## � Deploy backend on Render and frontend on Vercel
 
-### Backend
+### Backend (Render)
 
-1. Create a new Railway project
-2. Add a **MongoDB** plugin (or use MongoDB Atlas)
-3. Deploy the `backend/` folder as a service
-4. Set environment variables:
-   - `MONGODB_URI` — from Railway MongoDB or Atlas
-   - `JWT_SECRET` — strong random string
-   - `CLIENT_URL` — your frontend URL
-   - `PORT` — Railway sets this automatically
+1. Create a new Web Service on Render.
+2. Connect your GitHub repository and select the `main` branch.
+3. Set the Root Directory to `backend`.
+4. Use the default build command or set it to:
+   - `npm install`
+5. Use the start command:
+   - `npm start`
+6. Add environment variables in Render:
+   - `MONGODB_URI` — your MongoDB Atlas or other connection string
+   - `JWT_SECRET` — a strong random secret
+   - `CLIENT_URL` — your Vercel frontend URL (for production CORS)
+   - `PORT` — leave blank, Render will provide it
 
-### Frontend
+### Frontend (Vercel)
 
-1. Add another service from the `frontend/` folder
-2. Set build command: `npm run build`
-3. Set start command: `npx serve dist`
-4. Add env variable:
-   - Update `vite.config.js` proxy target to your backend Railway URL
+1. Create a new Vercel project and connect your GitHub repository.
+2. Set the Root Directory to `frontend`.
+3. Set the Build Command to:
+   - `npm run build`
+4. Set the Output Directory to:
+   - `dist`
+5. Add environment variables in Vercel:
+   - `VITE_API_BASE_URL` — your Render backend URL, for example `https://your-backend.onrender.com`
+6. Deploy.
 
-**Or** use a static host (Vercel/Netlify) for the frontend with the backend on Railway.
+> With this setup, local development still uses the Vite proxy at `/api`, while production uses `VITE_API_BASE_URL`.
 
 ---
 
